@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Visio AI — Detecção facial</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+/* Espelhamento completo do dashboard. */
+.sidebar{inset:0 0 0 auto!important;border-right:0!important;border-left:1px solid #1b3c60!important}.main{margin-left:0!important;margin-right:264px!important}.brand,.nav-item,.system-card,.sidebar-bottom{direction:rtl}.brand>div:last-child,.nav-item,.system-card,.sidebar-bottom{direction:ltr}.nav-item.active{box-shadow:inset -3px 0 var(--cyan)!important}.nav-dot,.pulse{margin-left:0!important;margin-right:auto!important}.topbar,.intro,footer{flex-direction:row-reverse}.intro-art{margin-right:0!important;margin-left:38px}.workspace-grid{grid-template-columns:minmax(270px,.85fr) minmax(0,1.8fr)!important}.insight-panel{grid-column:1}.camera-panel{grid-column:2}.bottom-grid{grid-template-columns:1fr 1.45fr!important}.privacy-panel{grid-column:1}.how-panel{grid-column:2}.privacy-big-icon{right:auto!important;left:18px}
+@media(max-width:1120px){.main{margin-right:205px!important}.workspace-grid{grid-template-columns:minmax(245px,.9fr) minmax(0,1.5fr)!important}.intro-art{margin-left:0!important}}@media(max-width:850px){.main{margin-left:66px!important;margin-right:0!important}.workspace-grid,.bottom-grid{grid-template-columns:1fr!important}.insight-panel,.camera-panel,.privacy-panel,.how-panel{grid-column:auto}}
+:root{--bg:#061428;--nav:#05101f;--panel:#0c2340;--line:#214a72;--text:#edf7ff;--muted:#91b2d2;--blue:#2497ff;--cyan:#63ddff;--blue2:#126bd1}*{box-sizing:border-box}body{margin:0;min-width:320px;background:radial-gradient(circle at 70% 0,#164979 0,transparent 29%),var(--bg);color:var(--text);font:14px 'DM Sans',sans-serif}button{font:inherit;cursor:pointer}.app-shell{min-height:100vh}.sidebar{position:fixed;inset:0 auto 0 0;width:264px;padding:27px 17px;background:linear-gradient(#06172b,#030a14);border-right:1px solid #1b3c60;display:flex;flex-direction:column;z-index:3}.brand{display:flex;gap:11px;align-items:center;padding:0 10px 48px}.brand strong{font:700 23px 'Space Grotesk';letter-spacing:-1px}.brand strong span,.nav-icon{color:var(--cyan)}.brand small{display:block;margin-top:3px;color:#7396bd;font-size:8px;letter-spacing:2px}.brand-mark{width:32px;height:32px;display:grid;grid-template-columns:repeat(2,1fr);gap:3px;transform:rotate(-7deg)}.brand-mark span{border-radius:3px;background:linear-gradient(135deg,var(--cyan),var(--blue2));box-shadow:0 0 14px #37a7ff52}.brand-mark span:nth-child(2),.brand-mark span:nth-child(3){opacity:.45}.side-label{padding:0 12px 12px;color:#6484a9;font-size:9px;letter-spacing:1.8px;font-weight:700}.nav-item{height:46px;margin-bottom:5px;border-radius:10px;padding:0 12px;display:flex;gap:12px;align-items:center;color:#a7c0db;text-decoration:none;transition:.2s}.nav-item:hover{background:#102b4b;color:#fff}.nav-item.active{background:linear-gradient(90deg,#123c67,#0d2745);box-shadow:inset 3px 0 var(--cyan);color:#fff;font-weight:600}.nav-icon{width:18px;text-align:center;font-size:17px}.nav-dot,.pulse{width:6px;height:6px;margin-left:auto;border-radius:50%;background:var(--cyan);box-shadow:0 0 9px var(--cyan)}.nav-item.muted{color:#7897b9}.second{margin-top:36px}.system-card{display:flex;gap:10px;align-items:center;padding:12px 9px;border:1px solid #1d3d60;border-radius:12px;background:#0b1d34}.system-icon{width:31px;height:31px;display:grid;place-items:center;border-radius:9px;background:#123b64;color:var(--cyan);font-size:18px}.system-card b,.profile b{display:block;font-size:11px}.system-card small,.profile small{display:block;margin-top:4px;color:#7899bb;font-size:9px}.sidebar-bottom{display:flex;gap:10px;align-items:center;margin-top:auto;padding:19px 5px 0;border-top:1px solid #1b3859}.avatar,.top-avatar{width:34px;height:34px;display:grid;place-items:center;border-radius:10px;background:#124270;color:var(--cyan);font-weight:700}.profile{flex:1}.lock{color:#6f91b6;font-size:19px}.main{max-width:1800px;margin-left:264px;padding:0 42px}.topbar{height:78px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #1a385b}.breadcrumb{font-size:12px;color:#7596b8}.breadcrumb span{padding:0 10px;color:#35597e}.breadcrumb b{color:#d5eaff;font-weight:500}.top-actions{display:flex;align-items:center;gap:17px}.privacy{display:flex;gap:7px;align-items:center;color:#a9c9e6;font-size:10px}.privacy i,.privacy-foot i{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px var(--cyan)}.top-avatar{width:31px;height:31px;border-radius:50%}.intro{position:relative;min-height:238px;padding:43px 0 31px;display:flex;align-items:center;justify-content:space-between;overflow:hidden}.eyebrow,.panel-kicker{color:#78b9ed;font-size:9px;letter-spacing:1.7px;font-weight:700}.eyebrow{display:flex;gap:9px;align-items:center}.eyebrow-line{height:2px;width:23px;background:var(--cyan)}h1{margin:13px 0 12px;font:600 clamp(32px,3.3vw,47px)/1.05 'Space Grotesk';letter-spacing:-2px}h1 em{color:var(--cyan);font-style:normal}.intro p{max-width:465px;margin:0;color:#a8c2dc;font-size:12px;line-height:1.7}.intro-art{width:255px;height:180px;margin-right:38px;display:grid;place-items:center;position:relative}.orbit{position:absolute;border:1px solid #3370a4;border-radius:50%;transform:rotate(-28deg)}.orbit-one{width:245px;height:118px}.orbit-two{width:163px;height:163px;border-color:#24517e}.face-graphic{width:90px;height:108px;position:relative;border:1px solid var(--cyan);border-radius:45% 45% 43% 43%;background:linear-gradient(145deg,#123e67,#091c31);box-shadow:0 0 38px #39a8ff42}.face-eye{position:absolute;top:41px;width:8px;height:4px;border-top:2px solid var(--cyan)}.face-eye.left{left:21px}.face-eye.right{right:21px}.face-nose{position:absolute;top:46px;left:43px;height:13px;border-left:1px solid #8bd7ff}.face-mouth{position:absolute;top:71px;left:34px;width:22px;height:6px;border-bottom:1px solid var(--cyan);border-radius:50%}.corner{position:absolute;width:13px;height:13px;border-color:var(--cyan);border-style:solid}.c1{top:-5px;left:-5px;border-width:1px 0 0 1px}.c2{top:-5px;right:-5px;border-width:1px 1px 0 0}.c3{bottom:-5px;left:-5px;border-width:0 0 1px 1px}.c4{bottom:-5px;right:-5px;border-width:0 1px 1px 0}.art-tag{position:absolute;right:-5px;bottom:4px;color:#78a5cf;font-size:8px;letter-spacing:2px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px}.stat-card,.panel{border:1px solid var(--line);border-radius:14px;background:linear-gradient(135deg,#0d2848,#091b32);box-shadow:0 15px 35px #00000016}.stat-card{min-height:123px;padding:17px 19px}.stat-top{display:flex;justify-content:space-between;align-items:center;color:#8caaca;font-size:9px;letter-spacing:1.1px;font-weight:700}.stat-icon{width:29px;height:29px;display:grid;place-items:center;border-radius:9px;font-size:18px}.green,.blue,.purple{color:var(--cyan);background:#123e66}.stat-value{margin-top:7px;font:600 31px 'Space Grotesk';letter-spacing:-1px}.status-value{padding-top:5px;font-size:23px}.stat-foot{display:flex;gap:7px;align-items:center;margin-top:5px;color:#7f9fbd;font-size:10px}.tiny-dot{display:inline-block;flex-shrink:0;width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 7px var(--cyan)}.tiny-dot.gray{background:#547493;box-shadow:none}.workspace-grid{display:grid;grid-template-columns:minmax(0,1.8fr) minmax(270px,.85fr);gap:16px}.panel{padding:20px}.panel-heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:17px}.panel-kicker{font-size:8px}.panel h2,.how-panel h2{margin:6px 0 0;font:600 18px 'Space Grotesk';letter-spacing:-.4px}.live-pill{display:flex;gap:6px;align-items:center;padding:6px 8px;border:1px solid #365779;border-radius:5px;color:#81a5c8;font-size:8px;letter-spacing:1px}.live-pill span{width:5px;height:5px;border-radius:50%;background:#5e7d9c}.live-pill.live{border-color:#1c83c9;background:#0d3457;color:var(--cyan)}.live-pill.live span{background:var(--cyan);box-shadow:0 0 8px var(--cyan)}.camera-stage{position:relative;height:350px;overflow:hidden;border:1px solid #31577d;border-radius:11px;background:radial-gradient(ellipse at 50% 45%,#17436d 0%,#0b213a 48%,#05101e 100%)}.camera-stage:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,#3aaaff08 1px,transparent 1px),linear-gradient(#3aaaff08 1px,transparent 1px);background-size:30px 30px}.camera-stage video,.camera-stage canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scaleX(1)}.camera-stage video{display:none}.camera-stage canvas{pointer-events:none}.camera-placeholder{position:absolute;z-index:1;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center}.camera-symbol{width:58px;height:46px;display:flex;gap:5px;align-items:center;justify-content:center;margin-bottom:15px;border:1px solid #3972a1;border-radius:13px;background:#0c2947}.camera-symbol span{width:4px;height:4px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px var(--cyan)}.camera-symbol span:nth-child(2){width:19px;height:19px;border:1px solid #75cfff;background:transparent}.camera-placeholder h3{margin:0 0 7px;font:500 16px 'Space Grotesk'}.camera-placeholder p{max-width:270px;margin:0 0 18px;color:#98b9d8;font-size:10px;line-height:1.6}.primary-btn{padding:11px 16px;border:0;border-radius:7px;background:linear-gradient(135deg,#54d5ff,#1887f3);box-shadow:0 7px 24px #219fff3d;color:#06182b;font-size:11px;font-weight:700}.primary-btn span{margin-right:7px}.stage-top,.stage-bottom{position:absolute;z-index:2;left:12px;right:12px;display:flex;align-items:center;justify-content:space-between;pointer-events:none}.stage-top{top:12px}.stage-bottom{bottom:12px;color:#93b7d6;font-size:8px;letter-spacing:1px}.stage-chip,.stage-resolution{padding:6px 7px;border:1px solid #39607f;border-radius:4px;background:#07192ddd;color:#c4e3ff;font-size:8px;letter-spacing:1px}.stage-chip i{display:inline-block;width:5px;height:5px;margin-right:5px;border-radius:50%;background:var(--cyan)}.camera-controls{display:flex;gap:12px;align-items:center;justify-content:space-between;padding-top:15px}.control-note{display:flex;gap:8px;align-items:center;color:#8eafd0;font-size:9px}.green-check{width:17px;height:17px;display:grid;place-items:center;border-radius:50%;background:#10456d;color:var(--cyan);font-size:10px}.button-row{display:flex;gap:7px}.secondary-btn{padding:8px 11px;border:1px solid #335778;border-radius:6px;background:#102b49;color:#bcdaef;font-size:10px}.secondary-btn:disabled{opacity:.35;cursor:not-allowed}.error-message{min-height:0;margin-top:10px;color:#ff9bac;font-size:11px}.error-message:not(:empty){padding:10px;border-radius:6px;background:#321c2a}.insight-panel{display:flex;flex-direction:column}.sparkle{color:var(--cyan);font-size:20px}.result-visual{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;height:164px;overflow:hidden;border:1px solid #285475;border-radius:10px;background:radial-gradient(circle,#123b61,#091b30)}.scan-ring{position:relative;display:grid;place-items:center;width:89px;height:89px;border:1px solid #4da9df;border-radius:50%;background:#0d3153}.scan-ring:before,.scan-ring:after{position:absolute;border:1px solid #2a6c9c;border-radius:50%;content:""}.scan-ring:before{inset:8px}.scan-ring:after{inset:-8px;border-style:dashed;opacity:.7}.scan-person{z-index:1;display:flex;flex-direction:column;align-items:center;width:34px;height:49px}.scan-person .head{width:18px;height:20px;border:1px solid var(--cyan);border-radius:50%;background:#19537c}.scan-person .body{width:34px;height:21px;margin-top:3px;border:1px solid var(--cyan);border-radius:14px 14px 5px 5px;background:#19537c}.scan-line{position:absolute;top:50%;left:0;right:0;height:1px;background:#61daffcc;box-shadow:0 0 9px #61daff;animation:scan 3s ease-in-out infinite}@keyframes scan{0%,100%{transform:translateY(-35px);opacity:.25}50%{transform:translateY(35px);opacity:1}}.scan-caption{display:flex;gap:7px;align-items:center;margin-top:15px;color:#a6c4dd;font-size:9px}.result-row{display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-bottom:1px solid #1c3e5e;color:#9dbbd6;font-size:10px}.result-row b{color:#e1f2ff;font-weight:600}.result-row .not-enabled{padding:5px 7px;border-radius:4px;background:#153653;color:#acd1ef;font-size:9px}.tip-box{display:flex;gap:10px;margin-top:auto;padding:12px;border:1px solid #1c4a70;border-radius:9px;background:#0c2a48}.tip-icon{color:var(--cyan);font-size:17px}.tip-box b{color:#d8efff;font-size:10px}.tip-box p{margin:5px 0 0;color:#94b5d1;font-size:9px;line-height:1.6}.bottom-grid{display:grid;grid-template-columns:1.45fr 1fr;gap:16px;margin-top:16px}.how-panel h2{margin-bottom:17px}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.step{display:flex;gap:10px}.step-num{padding-top:2px;color:var(--cyan);font:600 11px 'Space Grotesk'}.step b{font-size:10px}.step p{margin:5px 0 0;color:#8cacca;font-size:9px;line-height:1.6}.privacy-panel{position:relative;overflow:hidden;padding:20px 22px;border:1px solid #236192;border-radius:14px;background:linear-gradient(120deg,#0d4e7d,#08223d)}.privacy-big-icon{position:absolute;top:16px;right:18px;color:#78d6ff;opacity:.75;font-size:27px}.privacy-panel h2{margin:10px 0;font:600 19px/1.25 'Space Grotesk'}.privacy-panel p{max-width:350px;margin:0;color:#b5d5ec;font-size:10px;line-height:1.7}.privacy-foot{display:flex;gap:7px;align-items:center;margin-top:16px;color:#9edaff;font-size:8px;letter-spacing:1.2px}footer{display:flex;justify-content:space-between;padding:22px 0 27px;color:#6688ac;font-size:8px;letter-spacing:1px}footer b,.footer-heart{color:var(--cyan)}
+@media(max-width:1120px){.sidebar{width:205px}.main{margin-left:205px;padding:0 24px}.workspace-grid{grid-template-columns:minmax(0,1.5fr) minmax(245px,.9fr)}.intro-art{width:170px;margin-right:0}.camera-stage{height:290px}}@media(max-width:850px){.sidebar{width:66px;padding:22px 10px}.brand{padding:0 7px 40px}.brand>div:last-child,.side-label,.nav-item:not(.active),.nav-item.active{font-size:0}.brand-mark{width:29px;flex-shrink:0}.nav-item{justify-content:center;padding:0}.nav-icon{font-size:20px}.nav-dot,.system-card>div:not(.system-icon),.pulse,.sidebar-bottom .profile,.lock{display:none}.system-card{justify-content:center;padding:8px 0}.sidebar-bottom{justify-content:center}.main{margin-left:66px;padding:0 18px}.workspace-grid,.bottom-grid{grid-template-columns:1fr}.insight-panel{min-height:400px}.intro-art{opacity:.6}}@media(max-width:560px){.main{padding:0 12px}.topbar{height:60px}.privacy{display:none}.intro{min-height:0;padding:25px 0 20px}.intro-art{display:none}h1{font-size:34px}.stats{grid-template-columns:1fr;gap:8px}.stat-card{min-height:95px}.camera-stage{height:260px}.camera-controls{flex-direction:column;align-items:flex-start}.steps{grid-template-columns:1fr}.step{padding:5px 0}.panel{padding:15px}.bottom-grid{gap:10px}footer{gap:12px;line-height:1.6}footer span:last-child{text-align:right}}
+
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-mark"><span></span><span></span><span></span><span></span></div><div><strong>visio<span>ai</span></strong><small>COMPUTER VISION</small></div></div>
+      <div class="side-label">WORKSPACE</div>
+      <a class="nav-item active" href="#"><span class="nav-icon">◉</span> Visão geral <span class="nav-dot"></span></a>
+      <a class="nav-item muted" href="#how"><span class="nav-icon">⌘</span> Como funciona</a>
+      <div class="side-label second">SISTEMA</div>
+      <div class="system-card"><div class="system-icon">✳</div><div><b>Motor de detecção</b><small>Detector no navegador</small></div><span class="pulse"></span></div>
+      <div class="sidebar-bottom"><div class="avatar">VA</div><div class="profile"><b>Projeto local</b><small>Executando no seu PC</small></div><span class="lock">⌑</span></div>
+    </aside>
+    <main class="main">
+      <header class="topbar"><div class="breadcrumb">Workspace <span>/</span> <b>Detecção facial</b></div><div class="top-actions"><span class="privacy"><i></i> Análise protegida</span><div class="top-avatar">R</div></div></header>
+      <section class="intro">
+        <div><div class="eyebrow"><span class="eyebrow-line"></span> CENTRAL DE ANÁLISE VISUAL</div><h1>Identifique presenças<br><em>com precisão ao vivo.</em></h1><p>Acompanhe a detecção facial pela webcam em uma experiência rápida, clara e totalmente local.</p></div>
+        <div class="intro-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="face-graphic"><div class="face-eye left"></div><div class="face-eye right"></div><div class="face-nose"></div><div class="face-mouth"></div><i class="corner c1"></i><i class="corner c2"></i><i class="corner c3"></i><i class="corner c4"></i></div><span class="art-tag">FACE / 01</span></div>
+      </section>
+      <section class="stats">
+        <article class="stat-card"><div class="stat-top"><span>PRESENÇAS IDENTIFICADAS</span><span class="stat-icon green">◎</span></div><div class="stat-value" id="faceCount">—</div><div class="stat-foot"><span class="tiny-dot"></span><span id="detectionStatus">Aguardando câmera</span></div></article>
+        <article class="stat-card"><div class="stat-top"><span>CONEXÃO DA CÂMERA</span><span class="stat-icon blue">◉</span></div><div class="stat-value status-value" id="cameraStat">Desligada</div><div class="stat-foot"><span class="tiny-dot gray" id="cameraDot"></span><span id="cameraDetail">Nenhuma câmera ativa</span></div></article>
+        <article class="stat-card"><div class="stat-top"><span>LEITURA INTELIGENTE</span><span class="stat-icon purple">⌁</span></div><div class="stat-value status-value" id="analysisStat">Em espera</div><div class="stat-foot"><span class="tiny-dot"></span><span>Detecção quadro a quadro</span></div></article>
+      </section>
+      <section class="workspace-grid">
+        <article class="panel camera-panel">
+          <div class="panel-heading"><div><div class="panel-kicker">CAPTURA EM TEMPO REAL</div><h2>Visão da câmera</h2></div><div class="live-pill" id="livePill"><span></span> OFFLINE</div></div>
+          <div class="camera-stage" id="cameraStage">
+            <video id="video" autoplay playsinline muted></video><canvas id="overlay"></canvas>
+            <div class="camera-placeholder" id="placeholder"><div class="camera-symbol"><span></span><span></span><span></span></div><h3>Pronto para começar</h3><p>Ative a câmera para iniciar a leitura facial ao vivo.</p><button class="primary-btn" id="startBtn"><span>◉</span> Ativar câmera</button></div>
+            <div class="stage-top"><span class="stage-chip"><i></i> LIVE FEED</span><span class="stage-resolution" id="resolution">SEM SINAL</span></div><div class="stage-bottom"><span>VISIO / DETECTOR 01</span><span id="clock">00:00:00</span></div>
+          </div>
+          <div class="camera-controls"><div class="control-note"><span class="green-check">✓</span><span>O vídeo é processado localmente no seu computador.</span></div><div class="button-row"><button class="secondary-btn" id="stopBtn" disabled>■ Parar</button><button class="secondary-btn" id="flipBtn" disabled>↻ Reiniciar</button></div></div>
+          <div class="error-message" id="errorMessage" role="status"></div>
+        </article>
+        <aside class="panel insight-panel">
+          <div class="panel-heading"><div><div class="panel-kicker">PAINEL DE RESULTADOS</div><h2>Panorama da cena</h2></div><span class="sparkle">✳</span></div>
+          <div class="result-visual"><div class="scan-ring"><div class="scan-person"><span class="head"></span><span class="body"></span></div><div class="scan-line"></div></div><div class="scan-caption"><span class="tiny-dot"></span><span id="scanCaption">Aguardando primeiro quadro</span></div></div>
+          <div class="result-row"><span>Presenças no quadro</span><b id="resultCount">—</b></div><div class="result-row"><span>Modo de análise</span><b>Detecção</b></div><div class="result-row"><span>Identidade pessoal</span><b class="not-enabled">Não utilizada</b></div>
+          <div class="tip-box"><div class="tip-icon">✦</div><div><b>Para uma leitura mais precisa</b><p>Posicione-se de frente para a câmera, em um ambiente bem iluminado.</p></div></div>
+        </aside>
+      </section>
+      <section class="bottom-grid" id="how">
+        <article class="panel how-panel"><div class="panel-kicker">ENTENDA A TECNOLOGIA</div><h2>Como a análise acontece</h2><div class="steps"><div class="step"><div class="step-num">01</div><div><b>Captura</b><p>A webcam fornece os quadros de vídeo.</p></div></div><div class="step"><div class="step-num">02</div><div><b>Análise visual</b><p>O detector procura padrões associados a rostos.</p></div></div><div class="step"><div class="step-num">03</div><div><b>Marcação</b><p>As regiões detectadas são destacadas na tela.</p></div></div></div></article>
+        <article class="privacy-panel"><div class="privacy-big-icon">⌂</div><div class="panel-kicker">SUA PRIVACIDADE, SUA REGRA</div><h2>O controle fica<br>nas suas mãos.</h2><p>A análise acontece no seu próprio computador. O aplicativo não registra nem compartilha os seus vídeos.</p><div class="privacy-foot"><i></i> PROCESSAMENTO LOCAL</div></article>
+      </section>
+      <footer><span>VISIO AI <b>•</b> PROTÓTIPO DE VISÃO COMPUTACIONAL</span><span>FEITO PARA EXECUÇÃO LOCAL <span class="footer-heart">✳</span></span></footer>
+    </main>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+  <script>
+const video = document.getElementById("video");
+const canvas = document.getElementById("overlay");
+const ctx = canvas.getContext("2d");
+const placeholder = document.getElementById("placeholder");
+const startBtn = document.getElementById("startBtn");
+const stopBtn = document.getElementById("stopBtn");
+const flipBtn = document.getElementById("flipBtn");
+const faceCount = document.getElementById("faceCount");
+const resultCount = document.getElementById("resultCount");
+const cameraStat = document.getElementById("cameraStat");
+const cameraDot = document.getElementById("cameraDot");
+const cameraDetail = document.getElementById("cameraDetail");
+const analysisStat = document.getElementById("analysisStat");
+const detectionStatus = document.getElementById("detectionStatus");
+const livePill = document.getElementById("livePill");
+const resolution = document.getElementById("resolution");
+const scanCaption = document.getElementById("scanCaption");
+const errorMessage = document.getElementById("errorMessage");
+
+let stream = null;
+let running = false;
+let busy = false;
+let timer = null;
+let startedAt = 0;
+let clockTimer = null;
+let detectorReady = null;
+
+const MODEL_URL = "https://cdn.jsdelivr.net/gh/justadudewhohacks/face-api.js@0.22.2/weights";
+
+function setError(message = "") { errorMessage.textContent = message; }
+
+async function loadDetector() {
+  if (!window.faceapi) throw new Error("A biblioteca de detecção não foi carregada. Verifique sua conexão com a internet e atualize a página.");
+  if (!detectorReady) {
+    detectorReady = faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL);
+  }
+  await detectorReady;
+}
+
+async function startCamera() {
+  setError("");
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+    setError("Seu navegador não liberou acesso à câmera. Abra o endereço local no Chrome ou Edge.");
+    return;
+  }
+  try {
+    scanCaption.textContent = "Preparando detector local";
+    detectionStatus.textContent = "Carregando análise local";
+    await loadDetector();
+    stream = await navigator.mediaDevices.getUserMedia({
+      video: { facingMode: "user", width: { ideal: 1280 }, height: { ideal: 720 } },
+      audio: false
+    });
+    video.srcObject = stream;
+    await video.play();
+    running = true;
+    startedAt = Date.now();
+    placeholder.style.display = "none";
+    video.style.display = "block";
+    canvas.width = video.videoWidth || 640;
+    canvas.height = video.videoHeight || 480;
+    resolution.textContent = `${canvas.width} × ${canvas.height}`;
+    cameraStat.textContent = "Ativa";
+    cameraDot.classList.remove("gray");
+    cameraDetail.textContent = "Sinal recebido";
+    analysisStat.textContent = "Analisando";
+    detectionStatus.textContent = "Análise em andamento";
+    livePill.classList.add("live");
+    livePill.innerHTML = "<span></span> AO VIVO";
+    startBtn.disabled = true;
+    stopBtn.disabled = false;
+    flipBtn.disabled = false;
+    scanCaption.textContent = "Analisando a cena";
+    clockTimer = setInterval(updateClock, 500);
+    timer = setInterval(analyzeFrame, 450);
+    analyzeFrame();
+  } catch (err) {
+    let msg = "Não foi possível acessar a webcam.";
+    if (err.name === "NotAllowedError" || err.name === "PermissionDeniedError") msg = "Acesso à câmera negado. Permita a câmera nas configurações do navegador/Windows e tente novamente.";
+    else if (err.name === "NotFoundError" || err.name === "DevicesNotFoundError") msg = "Nenhuma webcam foi encontrada neste computador.";
+    else if (err.name === "NotReadableError") msg = "O navegador não conseguiu iniciar a webcam. Feche outras abas que possam estar usando a câmera, confira a permissão de câmera do navegador e tente novamente.";
+    setError(msg);
+  }
+}
+
+function updateClock() {
+  const seconds = Math.floor((Date.now() - startedAt) / 1000);
+  const h = String(Math.floor(seconds / 3600)).padStart(2, "0");
+  const m = String(Math.floor((seconds % 3600) / 60)).padStart(2, "0");
+  const s = String(seconds % 60).padStart(2, "0");
+  document.getElementById("clock").textContent = `${h}:${m}:${s}`;
+}
+
+async function analyzeFrame() {
+  if (!running || busy || video.readyState < 2) return;
+  busy = true;
+  try {
+    const faces = await faceapi.detectAllFaces(
+      video,
+      new faceapi.TinyFaceDetectorOptions({ inputSize: 320, scoreThreshold: 0.5 })
+    );
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const sx = canvas.width / video.videoWidth;
+    const sy = canvas.height / video.videoHeight;
+    faces.forEach(face => {
+      const { x: rawX, y: rawY, width: rawWidth, height: rawHeight } = face.box;
+      const x = rawX * sx, y = rawY * sy, w = rawWidth * sx, h = rawHeight * sy;
+      ctx.strokeStyle = "#63ddff";
+      ctx.lineWidth = Math.max(2, canvas.width / 500);
+      ctx.shadowColor = "#63ddff";
+      ctx.shadowBlur = 8;
+      ctx.strokeRect(x, y, w, h);
+      ctx.shadowBlur = 0;
+      ctx.fillStyle = "#63ddff";
+      ctx.fillRect(x, Math.max(0, y - 25), 105, 22);
+      ctx.fillStyle = "#061a2e";
+      ctx.font = "600 12px DM Sans, sans-serif";
+      ctx.fillText("PRESENÇA DETECTADA", x + 6, Math.max(15, y - 10));
+      // Corner accents
+      const c = Math.min(14, w / 4, h / 4);
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(x, y + c); ctx.lineTo(x, y); ctx.lineTo(x + c, y);
+      ctx.moveTo(x + w - c, y); ctx.lineTo(x + w, y); ctx.lineTo(x + w, y + c);
+      ctx.moveTo(x, y + h - c); ctx.lineTo(x, y + h); ctx.lineTo(x + c, y + h);
+      ctx.moveTo(x + w - c, y + h); ctx.lineTo(x + w, y + h); ctx.lineTo(x + w, y + h - c);
+      ctx.stroke();
+    });
+    faceCount.textContent = faces.length;
+    resultCount.textContent = faces.length;
+    detectionStatus.textContent = faces.length === 1 ? "1 presença encontrada" : `${faces.length} presenças encontradas`;
+    scanCaption.textContent = faces.length ? "Presença identificada na cena" : "Nenhuma presença detectada agora";
+  } catch (err) {
+    setError(err.message || "Falha ao analisar imagem.");
+  } finally {
+    busy = false;
+  }
+}
+
+function stopCamera() {
+  running = false;
+  if (timer) clearInterval(timer);
+  if (clockTimer) clearInterval(clockTimer);
+  timer = null; clockTimer = null;
+  if (stream) stream.getTracks().forEach(track => track.stop());
+  stream = null;
+  video.srcObject = null;
+  video.style.display = "none";
+  placeholder.style.display = "flex";
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  faceCount.textContent = "—";
+  resultCount.textContent = "—";
+  cameraStat.textContent = "Desligada";
+  cameraDot.classList.add("gray");
+  cameraDetail.textContent = "Nenhuma câmera ativa";
+  analysisStat.textContent = "Em espera";
+  detectionStatus.textContent = "Aguardando câmera";
+  livePill.classList.remove("live");
+  livePill.innerHTML = "<span></span> OFFLINE";
+  resolution.textContent = "SEM SINAL";
+  scanCaption.textContent = "Aguardando primeiro quadro";
+  document.getElementById("clock").textContent = "00:00:00";
+  startBtn.disabled = false;
+  stopBtn.disabled = true;
+  flipBtn.disabled = true;
+}
+startBtn.addEventListener("click", startCamera);
+stopBtn.addEventListener("click", stopCamera);
+flipBtn.addEventListener("click", () => { stopCamera(); startCamera(); });
+window.addEventListener("beforeunload", () => {
+  if (stream) stream.getTracks().forEach(track => track.stop());
+});
+
+  </script>
+</body>
+</html>
+
